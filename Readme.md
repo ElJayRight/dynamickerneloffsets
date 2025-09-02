@@ -3,13 +3,13 @@ I was getting really annoyed of having to hook a kernel debugger up to a box and
 
 # How does it work
 I built this around Havoc C2 as it supports client side scripting. The project can be broken down into 3 main steps
-1. Get the PDB
+1. Get the PDB - 
 This will parse out the PE header and extract the debug string (See Here: https://eljayright.dev/research/parsing_pe_headers/ for more info). Once this is done it will download the pdb client side to /tmp/filename.pdb
 
-2. Generate Offsets 
+2. Generate Offsets - 
 With the pdb, I created a QoL wrapper around https://github.com/moyix/pdbparse which when given a json file will output a c header file, which will have the offsets for the verison of the pdb provided. (Finally a fool proof way to stop bluescreens)
 
-3. Compile and run
+3. Compile and run -
 You can then recompile the bof with offsets. There is also another bof that can load the Vulnerable driver for you (I couldnt find one online in the 2 google searches I tried). Once the driver is loaded you can run the exploit and not have to worry about wrong offsets :)
 
 # How to use
