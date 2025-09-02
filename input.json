@@ -1,0 +1,9 @@
+{
+  "/tmp/ntkrnlmp.pdb": {
+    "_EPROCESS": [
+      "Token",
+      "UniqueProcessId",
+      "ActiveProcessLinks"
+    ]
+  }
+}
