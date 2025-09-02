@@ -22,14 +22,19 @@ def load_struct_as_dict(text: str) -> dict:
 
 # Example input
 def main():
-    if len(sys.argv) != 2:
-        print(f'[!] {sys.argv[0]} <json input file>')
+    # Usage: wrapper.py <json input file> [output file]
+    if len(sys.argv) < 2 or len(sys.argv) > 3:
+        print(f"[!] Usage: {sys.argv[0]} <json input file> [output file]\n"
+              f"    Defaults to 'offsets.h' if output file not provided.")
         exit(1)
 
-    with open(sys.argv[1], 'r') as file:
+    input_file = sys.argv[1]
+    output_file = sys.argv[2] if len(sys.argv) >= 3 else 'offsets.h'
+
+    with open(input_file, 'r') as file:
         input_data = json.load(file)
 
-    with open("offsets.h", 'w') as out_file:
+    with open(output_file, 'w') as out_file:
         for pdb in input_data:
             print(f"[i] Loading {pdb}, this can take a few seconds")
             os.system(f"pdb_tpi_vtypes.py {pdb} > {pdb}.json")
@@ -63,7 +68,7 @@ def main():
                     data = f'#define {struct}_{field} 0x{offset:x}'
                     print(data)
                     out_file.write(data+"\n")
-        print("output saved to offsets.h")
+        print(f"output saved to {output_file}")
 
 
 if __name__ == "__main__":
