@@ -1,0 +1,10 @@
+{
+	"dbutil2_3.test.c": {
+		"modules": [
+			"kernel32",
+			"ntdll",
+			"advapi32"
+		],
+		"output" : "dbutil_bof.c"
+	}
+}
